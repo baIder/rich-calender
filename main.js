@@ -3,11 +3,13 @@ let currentTime = new Date()
 render(currentTime)
 
 g('#prevMonth').onclick = () => {
-  render(new Date(currentTime - 86400 * 1000 * 30))
+  const firstDayOfCurrentMonth = new Date(currentTime.getFullYear(), currentTime.getMonth(), 1)
+  render(new Date(firstDayOfCurrentMonth - 86400 * 1000))
 }
 
 g('#nextMonth').onclick = () => {
-  render(new Date(currentTime - 0 + 86400 * 1000 * 30))
+  const firstDayOfNextMonth = new Date(currentTime.getFullYear(), currentTime.getMonth() + 1, 1)
+  render(firstDayOfNextMonth)
 }
 
 g('#today').onclick = () => {
