@@ -1,4 +1,4 @@
-let currentTime = new Date(2022, 4, 1)
+let currentTime = new Date()
 
 render(currentTime)
 
@@ -32,7 +32,6 @@ function render(time) {
     const firstDayOfCurrentMonth = new Date(year, month - 1, 1)
     let weekdayOfFirstDayOfCurrentMonth = firstDayOfCurrentMonth.getDay()
     const lastDayOfCurrentMonth = new Date(new Date(year, month - 1 + 1, 1) - 86400 * 1000)
-
     const daysOfCurrentMonth = lastDayOfCurrentMonth.getDate()
 
     days.innerHTML = ''
@@ -40,7 +39,7 @@ function render(time) {
     if (weekdayOfFirstDayOfCurrentMonth === 0) {
       weekdayOfFirstDayOfCurrentMonth = 7
     }
-    
+
     for (let i = 1; i < weekdayOfFirstDayOfCurrentMonth; i++) {
       const li = document.createElement('li')
       const d = new Date(firstDayOfCurrentMonth - 86400 * 1000 * i)
@@ -48,11 +47,25 @@ function render(time) {
       days.prepend(li)
     }
 
+    const now = new Date()
+    let selectedLi
+
     for (let i = 1; i <= daysOfCurrentMonth; i++) {
       const li = document.createElement('li')
       li.textContent = i.toString()
+      if (i === now.getDate() && month === now.getMonth() + 1 && year === now.getFullYear()) {
+        li.classList.add("calender-days-today")
+      }
+      li.onclick = () => {
+        if (selectedLi) {
+          selectedLi.classList.remove('calender-days-selected')
+        }
+        li.classList.add('calender-days-selected')
+        selectedLi = li
+      }
       days.append(li)
     }
+
     for (let i = lastDayOfCurrentMonth.getDay() + 1; i <= 7; i++) {
       if (i === 1) {
         return
