@@ -1,4 +1,4 @@
-let currentTime = new Date()
+let currentTime = new Date(2022, 4, 1)
 
 render(currentTime)
 
@@ -30,13 +30,17 @@ function render(time) {
   function generateDays(year, month) {
     const days = g('#days')
     const firstDayOfCurrentMonth = new Date(year, month - 1, 1)
-    const weekdayOfFirstDayOfCurrentMonth = firstDayOfCurrentMonth.getDay()
+    let weekdayOfFirstDayOfCurrentMonth = firstDayOfCurrentMonth.getDay()
     const lastDayOfCurrentMonth = new Date(new Date(year, month - 1 + 1, 1) - 86400 * 1000)
 
     const daysOfCurrentMonth = lastDayOfCurrentMonth.getDate()
 
     days.innerHTML = ''
 
+    if (weekdayOfFirstDayOfCurrentMonth === 0) {
+      weekdayOfFirstDayOfCurrentMonth = 7
+    }
+    
     for (let i = 1; i < weekdayOfFirstDayOfCurrentMonth; i++) {
       const li = document.createElement('li')
       const d = new Date(firstDayOfCurrentMonth - 86400 * 1000 * i)
@@ -49,8 +53,10 @@ function render(time) {
       li.textContent = i.toString()
       days.append(li)
     }
-
     for (let i = lastDayOfCurrentMonth.getDay() + 1; i <= 7; i++) {
+      if (i === 1) {
+        return
+      }
       const li = document.createElement('li')
       li.textContent = (i - lastDayOfCurrentMonth.getDay()).toString()
       days.append(li)
