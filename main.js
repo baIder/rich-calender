@@ -46,6 +46,7 @@ function render(time) {
       const li = document.createElement('li')
       const d = new Date(firstDayOfCurrentMonth - 86400 * 1000 * i)
       li.textContent = d.getDate().toString()
+      li.classList.add('calender-days-disabled')
       days.prepend(li)
     }
 
@@ -58,12 +59,30 @@ function render(time) {
       if (i === now.getDate() && month === now.getMonth() + 1 && year === now.getFullYear()) {
         li.classList.add("calender-days-today")
       }
+      const key = `${year}-${month}-${i}`
+      const events = window.data[key]
+      if (events) {
+        li.classList.add('calender-days-hasEvents')
+      }
       li.onclick = () => {
         if (selectedLi) {
           selectedLi.classList.remove('calender-days-selected')
         }
         li.classList.add('calender-days-selected')
         selectedLi = li
+        if (events) {
+          const fragment = document.createDocumentFragment()
+          events.map(event => {
+            const div = document.createElement('div')
+            div.classList.add('events-item')
+            div.textContent = event
+            fragment.append(div)
+          })
+          g('#events').innerHTML = ""
+          g('#events').append(fragment)
+        } else {
+          g('#events').innerHTML = "<div>无</div>"
+        }
       }
       days.append(li)
     }
@@ -74,6 +93,7 @@ function render(time) {
       }
       const li = document.createElement('li')
       li.textContent = (i - lastDayOfCurrentMonth.getDay()).toString()
+      li.classList.add('calender-days-disabled')
       days.append(li)
     }
   }

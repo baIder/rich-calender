@@ -20,13 +20,13 @@
     <time id="time"></time>
   </div>
   <ol class="calender-weekdays">
-    <li>周一</li>
-    <li>周二</li>
-    <li>周三</li>
-    <li>周四</li>
-    <li>周五</li>
-    <li>周六</li>
-    <li>周日</li>
+    <li>一</li>
+    <li>二</li>
+    <li>三</li>
+    <li>四</li>
+    <li>五</li>
+    <li>六</li>
+    <li>日</li>
   </ol>
   <ol class="calender-days" id="days">
 
@@ -40,8 +40,20 @@
       <button id="nextMonth">下个月</button>
     </div>
   </div>
-
 </div>
+<div class="events-wrapper">
+  <h2>当天的日程</h2>
+  <div class="events" id="events">
+
+  </div>
+</div>
+<script>
+  window.data = {
+    '2022-7-25': ['开发1', '写博客1'],
+    '2022-7-26': ['开发2', '写博客2'],
+    '2022-7-27': ['开发3', '写博客3'],
+  }
+</script>
 <script src="main.js"></script>
 </body>
 </html>
