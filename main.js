@@ -38,17 +38,7 @@ function render(time) {
 
     days.innerHTML = ''
 
-    if (weekdayOfFirstDayOfCurrentMonth === 0) {
-      weekdayOfFirstDayOfCurrentMonth = 7
-    }
-
-    for (let i = 1; i < weekdayOfFirstDayOfCurrentMonth; i++) {
-      const li = document.createElement('li')
-      const d = new Date(firstDayOfCurrentMonth - 86400 * 1000 * i)
-      li.textContent = d.getDate().toString()
-      li.classList.add('calender-days-disabled')
-      days.prepend(li)
-    }
+    const fragment = document.createDocumentFragment()
 
     const now = new Date()
     let selectedLi
@@ -76,6 +66,18 @@ function render(time) {
       }
     })
 
+    if (weekdayOfFirstDayOfCurrentMonth === 0) {
+      weekdayOfFirstDayOfCurrentMonth = 7
+    }
+
+    for (let i = 1; i < weekdayOfFirstDayOfCurrentMonth; i++) {
+      const li = document.createElement('li')
+      const d = new Date(firstDayOfCurrentMonth - 86400 * 1000 * i)
+      li.textContent = d.getDate().toString()
+      li.classList.add('calender-days-disabled')
+      fragment.prepend(li)
+    }
+
     for (let i = 1; i <= daysOfCurrentMonth; i++) {
       const li = document.createElement('li')
       li.textContent = i.toString()
@@ -87,18 +89,19 @@ function render(time) {
       if (events) {
         li.classList.add('calender-days-hasEvents')
       }
-      days.append(li)
+      fragment.append(li)
     }
 
     for (let i = lastDayOfCurrentMonth.getDay() + 1; i <= 7; i++) {
       if (i === 1) {
-        return
+        break
       }
       const li = document.createElement('li')
       li.textContent = (i - lastDayOfCurrentMonth.getDay()).toString()
       li.classList.add('calender-days-disabled')
-      days.append(li)
+      fragment.append(li)
     }
+    days.append(fragment)
   }
 }
 
