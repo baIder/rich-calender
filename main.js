@@ -53,6 +53,29 @@ function render(time) {
     const now = new Date()
     let selectedLi
 
+    days.addEventListener('click', (e) => {
+      if (selectedLi) {
+        selectedLi.classList.remove('calender-days-selected')
+      }
+      e.target.classList.add('calender-days-selected')
+      selectedLi = e.target
+      if (e.target.classList.contains('calender-days-hasEvents')) {
+        const key = `${year}-${month}-${e.target.textContent}`
+        const events = window.data[key]
+        const eventFragment = document.createDocumentFragment()
+        events.map(event => {
+          const div = document.createElement('div')
+          div.classList.add('events-item')
+          div.textContent = event
+          eventFragment.append(div)
+        })
+        g('#events').innerHTML = ""
+        g('#events').append(eventFragment)
+      } else {
+        g('#events').innerHTML = "<div>无</div>"
+      }
+    })
+
     for (let i = 1; i <= daysOfCurrentMonth; i++) {
       const li = document.createElement('li')
       li.textContent = i.toString()
@@ -63,26 +86,6 @@ function render(time) {
       const events = window.data[key]
       if (events) {
         li.classList.add('calender-days-hasEvents')
-      }
-      li.onclick = () => {
-        if (selectedLi) {
-          selectedLi.classList.remove('calender-days-selected')
-        }
-        li.classList.add('calender-days-selected')
-        selectedLi = li
-        if (events) {
-          const fragment = document.createDocumentFragment()
-          events.map(event => {
-            const div = document.createElement('div')
-            div.classList.add('events-item')
-            div.textContent = event
-            fragment.append(div)
-          })
-          g('#events').innerHTML = ""
-          g('#events').append(fragment)
-        } else {
-          g('#events').innerHTML = "<div>无</div>"
-        }
       }
       days.append(li)
     }
@@ -103,6 +106,3 @@ function g(selector) {
   return document.querySelector(selector)
 }
 
-function gs(selector) {
-  return document.querySelectorAll(selector)
-}
