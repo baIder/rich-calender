@@ -12,39 +12,41 @@
   <link href="styles/index.css" rel="stylesheet">
 </head>
 <body>
-<header class="siteHeader">
-  <h1>发财日历</h1>
-</header>
-<div class="calender">
-  <div class="calender-header">
-    <time id="time"></time>
-  </div>
-  <ol class="calender-weekdays">
-    <li>一</li>
-    <li>二</li>
-    <li>三</li>
-    <li>四</li>
-    <li>五</li>
-    <li>六</li>
-    <li>日</li>
-  </ol>
-  <ol class="calender-days" id="days">
-
-  </ol>
-  <div class="calender-actions">
-    <div class="calender-actions-left">
-      <button id="today">今天</button>
+<div class="wrapper">
+  <header class="siteHeader">
+    <h1>发财日历</h1>
+  </header>
+  <div class="calender">
+    <div class="calender-header">
+      <time id="time"></time>
     </div>
-    <div class="calender-actions-right">
-      <button id="prevMonth">上个月</button>
-      <button id="nextMonth">下个月</button>
+    <ol class="calender-weekdays">
+      <li>一</li>
+      <li>二</li>
+      <li>三</li>
+      <li>四</li>
+      <li>五</li>
+      <li>六</li>
+      <li>日</li>
+    </ol>
+    <ol class="calender-days" id="days">
+
+    </ol>
+    <div class="calender-actions">
+      <div class="calender-actions-left">
+        <button id="today">今天</button>
+      </div>
+      <div class="calender-actions-right">
+        <button id="prevMonth">上个月</button>
+        <button id="nextMonth">下个月</button>
+      </div>
     </div>
   </div>
-</div>
-<div class="events-wrapper">
-  <h2>当天的日程</h2>
-  <div class="events" id="events">
+  <div class="events-wrapper">
+    <h2>当天的日程</h2>
+    <div class="events" id="events">
 
+    </div>
   </div>
 </div>
 <script>
@@ -52,6 +54,12 @@
     '2022-7-25': ['开发1', '写博客1'],
     '2022-7-26': ['开发2', '写博客2'],
     '2022-7-27': ['开发3', '写博客3'],
+    '2022-8-25': ['开发1', '写博客1'],
+    '2022-8-26': ['开发2', '写博客2'],
+    '2022-8-27': ['开发3', '写博客3'],
+    '2022-9-25': ['开发1', '写博客1'],
+    '2022-9-26': ['开发2', '写博客2'],
+    '2022-9-27': ['开发3', '写博客3'],
   }
 </script>
 <script src="main.js"></script>

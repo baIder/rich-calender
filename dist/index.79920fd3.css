@@ -3,9 +3,9 @@
   width: 80vw;
   height: 90vh;
   max-height: 1200px;
-  margin: auto;
-  background: #002EA6;
+  background: #002ea6;
   border-radius: 15px;
+  margin: auto;
   box-shadow: 0 0 3px 4px #b4b4b4;
 }
 
@@ -15,7 +15,6 @@
     height: 100vh;
     border-radius: 0;
   }
-
 }
 
 .siteHeader {
@@ -23,12 +22,11 @@
   font-size: 18px;
 }
 
-
 .calender {
-  margin: 16px 16px 16px 16px;
-  background: white;
-  border-radius: 24px;
   color: #333;
+  background: #fff;
+  border-radius: 24px;
+  margin: 16px;
 }
 
 .calender-header {
@@ -38,60 +36,60 @@
 }
 
 .calender-weekdays {
-  display: flex;
   justify-content: space-around;
+  display: flex;
 }
 
 .calender-days {
-  display: flex;
   flex-wrap: wrap;
+  display: flex;
 }
 
 .calender-days > li {
   text-align: center;
-  width: calc(100% / 7);
+  width: 14.2857%;
   height: 42px;
+  border: 1px solid #0000;
   line-height: 42px;
-  border: 1px solid transparent;
   position: relative;
 }
 
 .calender-days > li.calender-days-selected {
+  border: 1px solid #ffe78f;
   border-radius: 8px;
-  border: 1px solid #FFE78F;
 }
 
 .calender-days > li.calender-days-disabled {
-  color: #999
+  color: #999;
 }
 
-.calender-days > li.calender-days-hasEvents::after {
-  content: '';
-  border: 1px solid green;
-  position: absolute;
-  top: 4px;
-  right: 4px;
+.calender-days > li.calender-days-hasEvents:after {
+  content: "";
   width: 8px;
   height: 8px;
   background: green;
+  border: 1px solid green;
   border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  right: 4px;
 }
 
 .calender-days-today {
+  background: #ffe78f;
   border-radius: 8px;
-  background: #FFE78F;
 }
 
 .calender-actions {
-  display: flex;
   justify-content: space-between;
   padding: 16px;
+  display: flex;
 }
 
 .calender-actions button {
-  font-size: 12px;
   height: 24px;
   padding: 0 8px;
+  font-size: 12px;
 }
 
 .calender-actions-right {
@@ -105,3 +103,5 @@
 .events-item {
   padding: 4px 0;
 }
+
+/*# sourceMappingURL=index.79920fd3.css.map */
